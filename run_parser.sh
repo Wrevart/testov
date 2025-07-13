@@ -13,7 +13,7 @@ if [ $(docker ps -aq -f name=$CONTAINER_NAME) ]; then
     docker rm -f $CONTAINER_NAME
 fi
 
-docker run \
+docker run -d \
   --name $CONTAINER_NAME \
   --memory=512m \
   --cpus=1 \

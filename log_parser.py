@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import time
 
 RULES_PATH = os.path.join('config', 'rules.json')
 LOG_PATH = os.path.join(os.sep, 'var', 'log', 'app', 'combined.log')
@@ -86,7 +87,9 @@ def save_stats(stats, path=STATS_PATH):
         json.dump(stats, f, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":
-    rules = load_parsing_rules()
-    log_lines = read_log_lines()
-    stats = collect_stats(log_lines, rules)
-    save_stats(stats) 
+    while True:
+        rules = load_parsing_rules()
+        log_lines = read_log_lines()
+        stats = collect_stats(log_lines, rules)
+        save_stats(stats)
+        time.sleep(1)

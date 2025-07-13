@@ -1,0 +1,14 @@
+[Unit]
+Description=Log Parser Docker Container
+After=network.target docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/root/log_parser
+ExecStart=/root/log_parser/run_parser.sh
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target
